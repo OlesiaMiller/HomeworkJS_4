@@ -62,18 +62,18 @@ console.log(wordsList(myLongStr, 'lor'));
 
 // console.log(getLocalDate(new Date(123456), true, true));
 
-/*
- * #3
- *
- * Создайте функцию getWeekDay(date), которая принимает дату в виде строки в формате 'yyyy-mm-dd'
- * и выводит текущий день недели: "понедельник", "вторник", … "воскресенье".
- */
+// 3
 
-// console.log(getWeekDay('2019-01-30')); // среда
-
-// console.log(getWeekDay('2019-07-16')); // вторник
-
-// console.log(getWeekDay('2019-07-27')); // суббота
+function getWeekDay(date) {
+    var dat = new Date(date);
+    var days = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
+  
+    return days[dat.getDay()];
+  }
+  
+console.log(getWeekDay('2019-01-30')); // среда
+console.log(getWeekDay('2019-07-16')); // вторник
+console.log(getWeekDay('2019-07-27')); // суббота
 
 // 4
 
