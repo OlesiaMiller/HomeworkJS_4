@@ -75,32 +75,46 @@ console.log(wordsList(myLongStr, 'lor'));
 
 // console.log(getWeekDay('2019-07-27')); // суббота
 
-/*
- * #4
- *
- * Напишите функцию, getLocalDay(date) которая возвращает день недели для даты date.
- * День нужно возвратить в европейской нумерации, т.е. понедельник имеет номер 1, вторник номер 2, …, воскресенье – номер 7.
- */
+// 4
 
-// console.log(getLocalDay('2019-07-16')); // 2
+function getLocalDay(date) {
+    var day = new Date(date);
+    num = day.getDay();
 
-// console.log(getLocalDay('2019-07-25')); // 4
+    if (num === 0) num = 7;     
+    return num;
 
-// console.log(getLocalDay('2019-07-27')); // 6
+}
 
-/*
- * #5
- *
- * Создайте функцию getDateAgo(date, days), которая возвращает дату,
- * которая была days дней назад от указанной даты date.
- * Дата принимается и возвращается в формате YYYY-MM-DD.
- */
 
-// console.log(getDateAgo('2019-01-29', 1)); // 28.01.2019
+console.log(getLocalDay('2019-07-16')); // 2
+console.log(getLocalDay('2019-07-25')); // 4
+console.log(getLocalDay('2019-07-27')); // 6
+console.log(getLocalDay('2019-08-02'));
+console.log(getLocalDay('2019-08-04'));
 
-// console.log(getDateAgo('2019-01-29', 2)); // 27.01.2019
 
-// console.log(getDateAgo('2019-01-29', 365)); // 29.01.2018
+
+// 5
+
+function getDateAgo(date, days) {
+    var dat = new Date(date);
+    dat.setDate(dat.getDate() - days);
+
+    var dd = dat.getDate();
+    if (dd < 10) dd = '0' + dd;
+  
+    var mm = dat.getMonth() + 1;
+    if (mm < 10) mm = '0' + mm;
+  
+    var yy = dat.getFullYear();
+  
+    return dd + '.' + mm + '.' + yy;
+  }
+
+console.log(getDateAgo('2019-01-29', 1)); // 28.01.2019
+console.log(getDateAgo('2019-01-29', 2)); // 27.01.2019
+console.log(getDateAgo('2019-01-29', 365)); // 29.01.2018
 
 /*
  * #6
