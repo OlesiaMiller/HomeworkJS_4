@@ -150,35 +150,35 @@ console.log(getDateAgo('2019-01-29', 365)); // 29.01.2018
 
 // console.log(car2.info()); // infinite FX50 AWD, 2019cc, year 2019, new -- изменения не выполняются
 
-/*
- * #7
- * Напишите функцию testPerformance(iterations, func) для тестирования производительности любых, переданных ей в качестве параметра функций.
- * iterations – количество повторений для тестирования.
- * func – тестируемая функция.
- *
- * Если в качестве параметра передается что-либо кроме функции, тестирование не выполняется, возвращается 0.
- */
 
-// данная функция необходима для корректного тестирования кода
-// function test1() {
-//   let str = myLongStr;
 
-//   while (str.indexOf('o') !== -1) str = str.replace('o', '');
-//   while (str.indexOf('a') !== -1) str = str.replace('a', '');
-//   while (str.indexOf('e') !== -1) str = str.replace('e', '');
-//   while (str.indexOf('u') !== -1) str = str.replace('u', '');
-//   while (str.indexOf('i') !== -1) str = str.replace('i', '');
-// }
 
-// данная функция необходима для корректного тестирования кода
-// function test2() {
-//   const reg = new RegExp('[oaeui]', 'gui');
+// 7
+function testPerformance(iterations, func) {
+    var d = new Date();
+    if (typeof func === 'function') 
+        for (var i = 0; i<= iterations; i++) func();
+        return new Date - d;
 
-//   myLongStr.replace(reg, '');
-// }
+};
 
-// console.log(testPerformance(100, test1)); // time
+function test1() {
+  let str = myLongStr;
 
-// console.log(testPerformance(100, test2)); // time
+  while (str.indexOf('o') !== -1) str = str.replace('o', '');
+  while (str.indexOf('a') !== -1) str = str.replace('a', '');
+  while (str.indexOf('e') !== -1) str = str.replace('e', '');
+  while (str.indexOf('u') !== -1) str = str.replace('u', '');
+  while (str.indexOf('i') !== -1) str = str.replace('i', '');
+}
 
-// console.log(testPerformance(100, 12345)); // 0
+function test2() {
+  const reg = new RegExp('[oaeui]', 'gui');
+  myLongStr.replace(reg, '');
+}
+
+console.log(testPerformance(100, test1)); // time
+console.log(testPerformance(100, test2)); // time
+console.log(testPerformance(100, 12345)); // 0
+
+
