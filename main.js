@@ -28,7 +28,12 @@ console.log(wordsList(myLongStr, 'lor'));
 
 
 
+// 2
 
+// function getLocalDate(date, isSeconds, isISO) {
+//   var myDate = new Date();
+//   return myDate;
+// }
 
 /*
  * #2
@@ -116,6 +121,47 @@ console.log(getDateAgo('2019-01-29', 1)); // 28.01.2019
 console.log(getDateAgo('2019-01-29', 2)); // 27.01.2019
 console.log(getDateAgo('2019-01-29', 365)); // 29.01.2018
 
+// 6
+
+
+
+var yearNow = yearNow = new Date().getFullYear();
+
+function fullInfo() {
+  return `${this.name} ${this.model}, ${this.engine}cc, year ${this.year}, ${this.used}`;
+}
+var Car = {
+  constructor: function(engine, model, name, year) {
+    this.engine = engine;
+    this.model = model;
+    this.name = name;
+    this.year = year;
+    return this;
+  },
+  info: fullInfo,
+  get used() {
+    return yearNow - this.year > 1 ? 'used' : 'new';
+    },
+  set used(value) {
+    if (value === 'new' && this.year < yearNow) this.year = yearNow;
+    }
+  };
+
+var car, car2;
+
+car = Object.create(Car).constructor(2000, 'Lacetti', 'Chevrolet', 2010);
+car2 = Object.create(Car).constructor(5000, 'FX50 AWD', 'Infinite', 2019);
+
+
+console.log(car.info()); // chevrolet Lacetti, 2010cc, year 2010, used
+car.used = 'new';
+console.log(car.info()); // chevrolet Lacetti, 2019cc, year 2019, new -- год изменен
+car.used = 'used';
+console.log(car.info()); // chevrolet Lacetti, 2019cc, year 2019, new -- изменения не выполняются
+console.log(car2.info()); // infinite FX50 AWD, 2019cc, year 2019, new
+car.used = 'used';
+console.log(car2.info()); // infinite FX50 AWD, 2019cc, year 2019, new -- изменения не выполняются
+
 /*
  * #6
  *
@@ -130,40 +176,20 @@ console.log(getDateAgo('2019-01-29', 365)); // 29.01.2018
  * Объекты и их методы, созданные прототипом должны полностью соответствовать объектам из прошлого задания.
  */
 
-// let car = new Car(2000, 'Lacetti', 'Chevrolet', 2010);
-
-// let car2 = new Car(5000, 'FX50 AWD', 'Infinite', 2019);
-
-// console.log(car.info()); // chevrolet Lacetti, 2010cc, year 2010, used
-
-// car.used = 'new';
-
-// console.log(car.info()); // chevrolet Lacetti, 2019cc, year 2019, new -- год изменен
-
-// car.used = 'used';
-
-// console.log(car.info()); // chevrolet Lacetti, 2019cc, year 2019, new -- изменения не выполняются
-
-// console.log(car2.info()); // infinite FX50 AWD, 2019cc, year 2019, new
-
-// car.used = 'used';
-
-// console.log(car2.info()); // infinite FX50 AWD, 2019cc, year 2019, new -- изменения не выполняются
-
 
 
 
 // 7
 function testPerformance(iterations, func) {
-    var d = new Date();
+    var d = Date.now();
     if (typeof func === 'function') 
         for (var i = 0; i<= iterations; i++) func();
-        return new Date - d;
+        return Date.now() - d;
 
 };
 
 function test1() {
-  let str = myLongStr;
+  var str = myLongStr;
 
   while (str.indexOf('o') !== -1) str = str.replace('o', '');
   while (str.indexOf('a') !== -1) str = str.replace('a', '');
